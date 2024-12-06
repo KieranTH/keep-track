@@ -33,7 +33,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true
@@ -46,5 +47,8 @@
         "projectId": "767004ae-bb22-428a-aafb-b956414a58f5"
       }
     }
+  },
+  "experiments": {
+    "reactCompiler": true
   }
 }
