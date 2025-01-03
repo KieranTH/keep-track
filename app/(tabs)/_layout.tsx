@@ -58,11 +58,42 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="tasks"
         options={{
-          title: "Explore",
+          title: "Tasks",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol
+              size={28}
+              name="pencil.and.list.clipboard"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="shopping"
+        options={{
+          title: "Shopping",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="storefront" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="reminders"
+        options={{
+          title: "Reminders",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="brain.head.profile" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notes"
+        options={{
+          title: "Notes",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="note.text" color={color} />
           ),
         }}
       />

@@ -11,6 +11,8 @@ type BottomModalContextType = {
   content?: React.ReactNode;
   setContent: (content: React.ReactNode) => void;
   snapPoint: SnapPoint;
+  open: (content: React.ReactNode, snapPoint?: SnapPoint) => void;
+  close: () => void;
 };
 
 // Create Bottom Modal Context
@@ -51,9 +53,20 @@ export const BottomModalProvider = ({ children }: BottomModalProviderType) => {
     ref.current?.dismiss();
   };
 
+  const open = (content: React.ReactNode, snapPoint: SnapPoint = "50%") => {
+    setContent(content);
+    setSnapPoint(snapPoint);
+    ref.current?.present();
+  };
+
+  const close = () => {
+    setContent(undefined);
+    ref.current?.dismiss();
+  };
+
   return (
     <BottomModalContext.Provider
-      value={{ ref, show, hide, content, setContent, snapPoint }}
+      value={{ ref, show, hide, content, setContent, snapPoint, open, close }}
     >
       {children}
     </BottomModalContext.Provider>

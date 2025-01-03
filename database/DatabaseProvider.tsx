@@ -32,6 +32,16 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
   // if (currentDbVersion === 1) {
   //   Add more migrations
   // }
+  if (currentDbVersion === 1) {
+    await db.execAsync(`
+      CREATE TABLE tasks (
+        id INTEGER PRIMARY KEY NOT NULL,
+        title TEXT NOT NULL,
+        description TEXT
+      );
+    `);
+    currentDbVersion = 2;
+  }
   await db.execAsync(`PRAGMA user_version = ${currentDbVersion}`);
 }
 

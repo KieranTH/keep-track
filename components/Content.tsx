@@ -2,6 +2,7 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { ScrollView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedView } from "./ThemedView";
+import { BackgroundView } from "./BackgroundView";
 
 type ContentProps = {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ const Content = ({
   children,
   className,
   contentClassName,
-  gap,
+  gap = 20,
   applySafeMargin = true,
   scrollEnabled,
   padding = 20,
@@ -24,8 +25,9 @@ const Content = ({
   const headerHeight = useHeaderHeight();
   const safeHeight = useSafeAreaInsets().top;
   const height = headerHeight > safeHeight ? headerHeight : safeHeight;
+
   return (
-    <ThemedView style={styles.container}>
+    <BackgroundView style={styles.container}>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -40,7 +42,7 @@ const Content = ({
       >
         {children}
       </ScrollView>
-    </ThemedView>
+    </BackgroundView>
   );
 };
 
