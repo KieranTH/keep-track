@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "task-master",
-    "slug": "task-master",
+    "name": "keep-track",
+    "slug": "keep-track",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
