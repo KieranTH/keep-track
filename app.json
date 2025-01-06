@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kieranth.taskmaster"
+      "bundleIdentifier": "com.kieranth.keep-track"
     },
     "android": {
       "adaptiveIcon": {
@@ -44,9 +44,10 @@
         "origin": false
       },
       "eas": {
-        "projectId": "767004ae-bb22-428a-aafb-b956414a58f5"
+        "projectId": "60522b4a-ced2-4511-9a73-4146e9510ebb"
       }
-    }
+    },
+    "owner": "kieranth"
   },
   "experiments": {
     "reactCompiler": true
