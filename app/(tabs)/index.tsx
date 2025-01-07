@@ -4,7 +4,7 @@ import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import Content from "@/components/Content";
-import { useUser } from "@/database/hooks";
+import { useUser } from "@/context/UserContext";
 import TasksOverview from "@/pages/home/TasksOverview";
 
 export default function HomeScreen() {

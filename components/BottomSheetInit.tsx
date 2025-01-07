@@ -11,10 +11,11 @@ import {
 } from "@gorhom/bottom-sheet";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../tailwind.config.js";
+import { StyleSheet, View } from "react-native";
 
 type BottomSheetContentType = {};
 export const BottomSheetContent = ({}: BottomSheetContentType) => {
-  const { ref, content, snapPoint } = useBottomModal();
+  const { ref, content, snapPoint, onDismiss } = useBottomModal();
   const fullConfig = resolveConfig(tailwindConfig);
 
   const backgroundColor = useThemeColor(
@@ -46,9 +47,27 @@ export const BottomSheetContent = ({}: BottomSheetContentType) => {
         borderTopLeftRadius: 12,
       }}
       handleIndicatorStyle={{ backgroundColor: indicatorColor }}
-      backdropComponent={BottomSheetBackdrop}
+      backdropComponent={(props) => (
+        <BottomSheetBackdrop
+          {...props}
+          opacity={0.5}
+          enableTouchThrough={false}
+          appearsOnIndex={0}
+          disappearsOnIndex={-1}
+          style={[
+            { backgroundColor: "rgba(0, 0, 0, 1)" },
+            StyleSheet.absoluteFillObject,
+          ]}
+        />
+      )}
       backgroundStyle={{
         backgroundColor,
+      }}
+      onDismiss={() => {
+        console.log("DISMISSSSSS");
+        if (onDismiss?.current) {
+          onDismiss.current();
+        }
       }}
     >
       <BottomSheetScrollView

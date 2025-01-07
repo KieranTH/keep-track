@@ -3,28 +3,26 @@ import { useEffect, useState } from "react";
 import { Task, User } from "./type";
 import { randomUUID } from "expo-crypto";
 
-export const useUser = () => {
+export const useUserDB = () => {
   const db = useSQLiteContext();
 
-  const [user, setUser] = useState<User | null>();
+  const fetchUser = async () => {
+    const result = await db.getAllAsync<User>("SELECT * FROM users");
+    return result;
+  };
 
-  useEffect(() => {
-    async function init() {
-      const result = await db.getAllAsync<User>("SELECT * FROM users");
-      if (result.length) {
-        setUser(result[0]);
-      } else [setUser(null)];
-    }
-    init();
-  }, []);
-
-  const addUser = async (name: string) => {
-    await db.runAsync("INSERT INTO users (name) VALUES (?)", name);
+  const addUser = async (name: string, colour?: string) => {
+    await db.runAsync(
+      "INSERT INTO users (name, colour) VALUES (?, ?)",
+      name,
+      colour ?? null
+    );
+    return fetchUser();
   };
 
   return {
-    user,
     addUser,
+    fetchUser,
   };
 };
 

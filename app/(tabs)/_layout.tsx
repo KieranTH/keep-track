@@ -7,30 +7,43 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { useSQLiteContext } from "expo-sqlite";
-import { User } from "@/database/type";
-import { useUser } from "@/database/hooks";
+import { useUser } from "@/context/UserContext";
 import { useBottomModal } from "@/context/BottomModalContext";
 import UserSheet from "@/sheets/UserSheet";
+import { useUserSetup } from "@/hooks/useStorage";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const { setContent, show, hide } = useBottomModal();
+  const { close, open } = useBottomModal();
+  const { completeSetup } = useUserSetup();
 
-  const { user } = useUser();
+  const { init, user } = useUser();
+  const { hasSetup, loading } = useUserSetup();
 
   const onUserCompleted = () => {
-    hide();
+    completeSetup();
+    close();
   };
+
+  // This is being called somehow - it shouldn't be.
+  function onUserDismissed() {
+    console.log("DISMISSED");
+    completeSetup()
+      .then(() => {
+        console.log("SETUP");
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  }
 
   useEffect(() => {
     // User has been queried for but not found
-    if (user === null) {
-      setContent(<UserSheet onCompleted={onUserCompleted} />);
-      show("75%");
+    if (user === undefined && init && !loading && hasSetup) {
+      open(<UserSheet onCompleted={onUserCompleted} />, "75%", onUserDismissed);
     }
-  }, [user]);
+  }, [user, init, hasSetup, loading]);
 
   return (
     <Tabs

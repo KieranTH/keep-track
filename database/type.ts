@@ -1,6 +1,7 @@
 export type User = {
   id: number;
   name: string;
+  colour?: string;
 };
 
 export type Task = {
