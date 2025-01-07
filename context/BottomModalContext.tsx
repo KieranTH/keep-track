@@ -67,7 +67,6 @@ export const BottomModalProvider = ({ children }: BottomModalProviderType) => {
   ) => {
     setContent(content);
     setSnapPoint(snapPoint);
-    console.log("dismissCb", dismissCb);
     if (dismissCb) {
       dismissCbRef.current = dismissCb;
     }

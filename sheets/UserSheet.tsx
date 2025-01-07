@@ -18,28 +18,41 @@ import Button from "@/components/Button";
 import { useUser } from "@/context/UserContext";
 import { useUserSetup } from "@/hooks/useStorage";
 import { STORAGE_KEYS } from "@/storage/keys";
+import { router } from "expo-router";
 
 type UserSheetType = {
   onCompleted: () => void;
 };
 const UserSheet = ({ onCompleted }: UserSheetType) => {
-  const { addUser } = useUserDB();
-  const { setUser } = useUser();
+  const { addUser, updateUser } = useUserDB();
+  const { setUser, user } = useUser();
 
   const primaryDefault = // @ts-ignore
     resolveConfig(tailwindConfig).theme.colors.primary as string;
 
-  const [name, setName] = useState("");
-  const [colour, setColour] = useState<string>(primaryDefault);
+  const [name, setName] = useState(user?.name ?? "");
+  const [colour, setColour] = useState<string>(user?.colour ?? primaryDefault);
 
   const onSave = () => {
-    addUser(name, colour).then((users) => {
-      if (users[0]) {
-        setUser(users[0]);
-        setName("");
-        onCompleted();
-      }
-    });
+    if (user?.id) {
+      updateUser(user.id, name, colour).then((users) => {
+        if (users[0]) {
+          setUser(users[0]);
+          setName(users[0].name ?? "");
+          onCompleted();
+        }
+      });
+    } else {
+      addUser(name, colour).then((users) => {
+        if (users[0]) {
+          setUser(users[0]);
+          setName(users[0].name ?? "");
+          onCompleted();
+        }
+      });
+    }
+
+    router.navigate("../");
   };
 
   const onColourChange = (colour: returnedResults) => {

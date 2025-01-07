@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import React, { useEffect } from "react";
 import { Platform } from "react-native";
 
@@ -15,33 +15,14 @@ import { useUserSetup } from "@/hooks/useStorage";
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const { close, open } = useBottomModal();
-  const { completeSetup } = useUserSetup();
-
   const { init, user } = useUser();
   const { hasSetup, loading } = useUserSetup();
 
-  const onUserCompleted = () => {
-    completeSetup();
-    close();
-  };
-
-  // This is being called somehow - it shouldn't be.
-  function onUserDismissed() {
-    console.log("DISMISSED");
-    completeSetup()
-      .then(() => {
-        console.log("SETUP");
-      })
-      .catch((error) => {
-        console.log("ERROR", error);
-      });
-  }
-
   useEffect(() => {
-    // User has been queried for but not found
-    if (user === undefined && init && !loading && hasSetup) {
-      open(<UserSheet onCompleted={onUserCompleted} />, "75%", onUserDismissed);
+    // User has been queried for but not found && they have not setup before
+    if (user === undefined && init && !loading && !hasSetup) {
+      router.navigate("/(sheets)/profile");
+      // open(<UserSheet onCompleted={onUserCompleted} />, "75%", onUserDismissed);
     }
   }, [user, init, hasSetup, loading]);
 

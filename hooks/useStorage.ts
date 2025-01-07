@@ -32,8 +32,12 @@ export const useUserSetup = () => {
     checkSetup();
   }, []);
 
-  const completeSetup = () => {
-    return store("HAS_SETUP", "true");
+  const completeSetup = async () => {
+    // if hasnt setup, set hasSetup to true
+    if (!hasSetup) {
+      await store(STORAGE_KEYS.HAS_SETUP, "true");
+      setHasSetup(true);
+    }
   };
 
   return {

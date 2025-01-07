@@ -20,9 +20,20 @@ export const useUserDB = () => {
     return fetchUser();
   };
 
+  const updateUser = async (id: number, name: string, colour?: string) => {
+    await db.runAsync(
+      "UPDATE users SET name = ?, colour = ? WHERE id = ?",
+      name,
+      colour ?? null,
+      id
+    );
+    return fetchUser();
+  };
+
   return {
     addUser,
     fetchUser,
+    updateUser,
   };
 };
 

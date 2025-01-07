@@ -11,6 +11,7 @@ import PrimaryContentText from "@/components/PrimaryContentText";
 import clsx from "clsx";
 import { usePrimaryColour } from "@/hooks/usePrimaryColour";
 import PrimaryButton from "@/components/PrimaryButton";
+import { router } from "expo-router";
 
 const TasksOverview = () => {
   const { tasks } = useGetTasks({});
@@ -23,7 +24,8 @@ const TasksOverview = () => {
   };
 
   const onAddHandler = () => {
-    open(<AddTaskSheet onComplete={onAddComplete} />);
+    router.navigate("/(sheets)/createTask");
+    // open(<AddTaskSheet onComplete={onAddComplete} />);
   };
 
   return (

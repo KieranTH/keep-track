@@ -45,6 +45,30 @@ export default function RootLayout() {
             <BottomSheetInit>
               <Stack>
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name={"(sheets)/profile"}
+                  options={{
+                    presentation: "formSheet",
+                    gestureDirection: "vertical",
+                    animation: "slide_from_bottom",
+                    sheetGrabberVisible: true,
+                    sheetInitialDetentIndex: 0,
+                    sheetAllowedDetents: [0.8],
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name={"(sheets)/createTask"}
+                  options={{
+                    presentation: "formSheet",
+                    gestureDirection: "vertical",
+                    animation: "slide_from_bottom",
+                    sheetGrabberVisible: true,
+                    sheetInitialDetentIndex: 0,
+                    sheetAllowedDetents: [0.8],
+                    headerShown: false,
+                  }}
+                />
                 <Stack.Screen name="+not-found" />
               </Stack>
               <StatusBar style="auto" />

@@ -64,7 +64,6 @@ export const BottomSheetContent = ({}: BottomSheetContentType) => {
         backgroundColor,
       }}
       onDismiss={() => {
-        console.log("DISMISSSSSS");
         if (onDismiss?.current) {
           onDismiss.current();
         }
