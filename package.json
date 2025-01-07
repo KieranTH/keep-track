@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint",
+    "lint": "eslint . --fix",
+    "types": "tsc --noEmit",
     "sim": "eas build --platform ios --profile ios-simulator",
     "local-sim": "eas build --platform ios --profile ios-simulator --local"
   },
