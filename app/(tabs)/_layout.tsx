@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import React, { useEffect } from "react";
 import { Platform } from "react-native";
 
@@ -7,30 +7,24 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { useSQLiteContext } from "expo-sqlite";
-import { User } from "@/database/type";
-import { useUser } from "@/database/hooks";
+import { useUser } from "@/context/UserContext";
 import { useBottomModal } from "@/context/BottomModalContext";
 import UserSheet from "@/sheets/UserSheet";
+import { useUserSetup } from "@/hooks/useStorage";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const { setContent, show, hide } = useBottomModal();
-
-  const { user } = useUser();
-
-  const onUserCompleted = () => {
-    hide();
-  };
+  const { init, user } = useUser();
+  const { hasSetup, loading } = useUserSetup();
 
   useEffect(() => {
-    // User has been queried for but not found
-    if (user === null) {
-      setContent(<UserSheet onCompleted={onUserCompleted} />);
-      show("75%");
+    // User has been queried for but not found && they have not setup before
+    if (user === undefined && init && !loading && !hasSetup) {
+      router.navigate("/(sheets)/profile");
+      // open(<UserSheet onCompleted={onUserCompleted} />, "75%", onUserDismissed);
     }
-  }, [user]);
+  }, [user, init, hasSetup, loading]);
 
   return (
     <Tabs
