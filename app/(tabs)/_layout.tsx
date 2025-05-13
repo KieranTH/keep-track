@@ -67,16 +67,16 @@ export default function TabLayout() {
 				options={{
 					title: "Shopping",
 					tabBarIcon: ({ color }) => (
-						<IconSymbol size={28} name="storefront" color={color} />
+						<IconSymbol size={28} name="storefront.fill" color={color} />
 					),
 				}}
 			/>
 			<Tabs.Screen
-				name="reminders"
+				name="gym"
 				options={{
-					title: "Reminders",
+					title: "Gym",
 					tabBarIcon: ({ color }) => (
-						<IconSymbol size={28} name="brain.head.profile" color={color} />
+						<IconSymbol size={28} name="dumbbell.fill" color={color} />
 					),
 				}}
 			/>

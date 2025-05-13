@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedView } from "./ThemedView";
 import { BackgroundView } from "./BackgroundView";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
 type ContentProps = {
 	children: React.ReactNode;
@@ -28,7 +29,7 @@ const Content = ({
 
 	return (
 		<BackgroundView style={styles.container}>
-			<ScrollView
+			<KeyboardAwareScrollView
 				contentContainerStyle={{
 					flexGrow: 1,
 					rowGap: gap,
@@ -41,7 +42,7 @@ const Content = ({
 				scrollEnabled={scrollEnabled}
 			>
 				{children}
-			</ScrollView>
+			</KeyboardAwareScrollView>
 		</BackgroundView>
 	);
 };

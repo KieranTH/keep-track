@@ -16,6 +16,7 @@ import "../global.css";
 import DatabaseProvider from "@/database/DatabaseProvider";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { UserProvider } from "@/context/UserContext";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -40,37 +41,39 @@ export default function RootLayout() {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<DatabaseProvider>
 				<UserProvider>
-					<GestureHandlerRootView>
-						<Stack>
-							<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-							<Stack.Screen
-								name={"(sheets)/profile"}
-								options={{
-									presentation: "formSheet",
-									gestureDirection: "vertical",
-									animation: "slide_from_bottom",
-									sheetGrabberVisible: true,
-									sheetInitialDetentIndex: 0,
-									sheetAllowedDetents: [0.8],
-									headerShown: false,
-								}}
-							/>
-							<Stack.Screen
-								name={"(sheets)/createTask"}
-								options={{
-									presentation: "formSheet",
-									gestureDirection: "vertical",
-									animation: "slide_from_bottom",
-									sheetGrabberVisible: true,
-									sheetInitialDetentIndex: 0,
-									sheetAllowedDetents: [0.8],
-									headerShown: false,
-								}}
-							/>
-							<Stack.Screen name="+not-found" />
-						</Stack>
-						<StatusBar style="auto" />
-					</GestureHandlerRootView>
+					<KeyboardProvider>
+						<GestureHandlerRootView>
+							<Stack>
+								<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+								<Stack.Screen
+									name={"(sheets)/profile"}
+									options={{
+										presentation: "formSheet",
+										gestureDirection: "vertical",
+										animation: "slide_from_bottom",
+										sheetGrabberVisible: true,
+										sheetInitialDetentIndex: 0,
+										sheetAllowedDetents: [0.8],
+										headerShown: false,
+									}}
+								/>
+								<Stack.Screen
+									name={"(sheets)/createTask"}
+									options={{
+										presentation: "formSheet",
+										gestureDirection: "vertical",
+										animation: "slide_from_bottom",
+										sheetGrabberVisible: true,
+										sheetInitialDetentIndex: 0,
+										sheetAllowedDetents: [0.8],
+										headerShown: false,
+									}}
+								/>
+								<Stack.Screen name="+not-found" />
+							</Stack>
+							<StatusBar style="auto" />
+						</GestureHandlerRootView>
+					</KeyboardProvider>
 				</UserProvider>
 			</DatabaseProvider>
 		</ThemeProvider>
