@@ -4,23 +4,23 @@ import { useEffect } from "react";
 import { View } from "react-native";
 
 export default function ProfileScreen() {
-  const { completeSetup } = useUserSetup();
+	const { completeSetup } = useUserSetup();
 
-  // On Unmount run setup complete
-  useEffect(() => {
-    return () => {
-      completeSetup();
-    };
-  }, []);
+	// On Unmount run setup complete
+	useEffect(() => {
+		return () => {
+			completeSetup();
+		};
+	}, []);
 
-  // on UserSheet completion run setup complete
-  const onComplete = () => {
-    completeSetup();
-  };
+	// on UserSheet completion run setup complete
+	const onComplete = () => {
+		completeSetup();
+	};
 
-  return (
-    <View className="p-4 mt-10">
-      <UserSheet onCompleted={onComplete} />;
-    </View>
-  );
+	return (
+		<View className="p-4 mt-10">
+			<UserSheet onCompleted={onComplete} />
+		</View>
+	);
 }

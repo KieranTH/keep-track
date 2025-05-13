@@ -1,23 +1,23 @@
 import { useThemeColor } from "@/hooks/useThemeColor";
-import Button, { ButtonProps } from "./Button";
+import Button, { type ButtonProps } from "./Button";
 
 type ThemedButtonProps = ButtonProps & {
-  lightColor?: string;
-  darkColor?: string;
+	lightColor?: string;
+	darkColor?: string;
 };
 
 const ThemedButton = ({
-  style,
-  lightColor,
-  darkColor,
-  ...otherProps
+	style,
+	lightColor,
+	darkColor,
+	...otherProps
 }: ThemedButtonProps) => {
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
+	const backgroundColor = useThemeColor(
+		{ light: lightColor, dark: darkColor },
+		"background",
+	);
 
-  return <Button style={[{ backgroundColor }, style]} {...otherProps} />;
+	return <Button style={[{ backgroundColor }, style]} {...otherProps} />;
 };
 
 export default ThemedButton;

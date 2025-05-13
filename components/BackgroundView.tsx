@@ -7,17 +7,17 @@ import tailwindConfig from "../tailwind.config.js";
 export type BackgroundViewProps = ViewProps;
 
 export function BackgroundView({ style, ...otherProps }: BackgroundViewProps) {
-  const fullConfig = resolveConfig(tailwindConfig);
+	const fullConfig = resolveConfig(tailwindConfig);
 
-  const backgroundColor = useThemeColor(
-    {
-      // @ts-ignore
-      light: fullConfig.theme.colors["background-light"],
-      // @ts-ignore
-      dark: fullConfig.theme.colors["background-dark"],
-    },
-    "background"
-  );
+	const backgroundColor = useThemeColor(
+		{
+			// @ts-ignore
+			light: fullConfig.theme.colors["background-light"],
+			// @ts-ignore
+			dark: fullConfig.theme.colors["background-dark"],
+		},
+		"background",
+	);
 
-  return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+	return <View style={[{ backgroundColor }, style]} {...otherProps} />;
 }
