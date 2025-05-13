@@ -13,7 +13,7 @@
 		"types": "tsc --noEmit",
 		"sim": "eas build --platform ios --profile ios-simulator",
 		"local-sim": "eas build --platform ios --profile ios-simulator --local",
-		"format": "biome format format --write ."
+		"format": "biome format --write ."
 	},
 	"jest": {
 		"preset": "jest-expo"
