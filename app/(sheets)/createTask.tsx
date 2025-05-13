@@ -6,13 +6,13 @@ import { useEffect } from "react";
 import { View } from "react-native";
 
 export default function CreateTaskScreen() {
-  const onComplete = () => {
-    router.navigate("../");
-  };
+	const onComplete = () => {
+		router.navigate("../");
+	};
 
-  return (
-    <View className="p-4 mt-10">
-      <AddTaskSheet onComplete={onComplete} />;
-    </View>
-  );
+	return (
+		<View className="p-4 mt-10">
+			<AddTaskSheet onComplete={onComplete} />
+		</View>
+	);
 }

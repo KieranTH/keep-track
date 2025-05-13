@@ -9,35 +9,35 @@ import { Link } from "expo-router";
 import ProfileButton from "@/components/ProfileButton";
 
 export default function HomeScreen() {
-  const { user } = useUser();
+	const { user } = useUser();
 
-  return (
-    <Content>
-      <View className="flex-row items-center justify-between gap-5 mt-10">
-        <View style={styles.titleContainer}>
-          {user?.name ? (
-            <ThemedText type="title">Hey {user?.name}</ThemedText>
-          ) : (
-            <ThemedText type="title">Keep Track</ThemedText>
-          )}
+	return (
+		<Content>
+			<View className="flex-row items-center justify-between gap-5 mt-10">
+				<View style={styles.titleContainer}>
+					{user?.name ? (
+						<ThemedText type="title">Hey {user?.name}</ThemedText>
+					) : (
+						<ThemedText type="title">Keep Track</ThemedText>
+					)}
 
-          {user?.name && <HelloWave />}
-        </View>
-        <View>
-          <Link href={"/(sheets)/profile"}>
-            <ProfileButton />
-          </Link>
-        </View>
-      </View>
-      <TasksOverview />
-    </Content>
-  );
+					{user?.name && <HelloWave />}
+				</View>
+				<View>
+					<Link href={"/(sheets)/profile"}>
+						<ProfileButton />
+					</Link>
+				</View>
+			</View>
+			<TasksOverview />
+		</Content>
+	);
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
+	titleContainer: {
+		flexDirection: "row",
+		alignItems: "center",
+		gap: 8,
+	},
 });

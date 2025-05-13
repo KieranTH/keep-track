@@ -10,19 +10,18 @@ import tailwindConfig from "../tailwind.config.js";
 import { useUser } from "@/context/UserContext";
 
 export function usePrimaryColour(
-  variant: "default" | "light" | "dark" = "default"
+	variant: "default" | "light" | "dark" = "default",
 ) {
-  const { user } = useUser();
+	const { user } = useUser();
 
-  const fullConfig = resolveConfig(tailwindConfig);
-  // @ts-ignore
-  const primary = fullConfig.theme.colors[
-    variant === "default" ? "primary" : `primary-${variant}`
-  ] as string;
+	const fullConfig = resolveConfig(tailwindConfig);
+	// @ts-ignore
+	const primary = fullConfig.theme.colors[
+		variant === "default" ? "primary" : `primary-${variant}`
+	] as string;
 
-  if (user?.colour) {
-    return user.colour;
-  } else {
-    return primary;
-  }
+	if (user?.colour) {
+		return user.colour;
+	}
+	return primary;
 }

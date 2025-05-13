@@ -1,14 +1,140 @@
 /* eslint-disable */
-import * as Router from 'expo-router';
+import type * as Router from "expo-router";
 
-export * from 'expo-router';
+export * from "expo-router";
 
-declare module 'expo-router' {
-  export namespace ExpoRouter {
-    export interface __routes<T extends string | object = string> {
-      hrefInputParams: { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}` | `/`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/notes` | `/notes`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/reminders` | `/reminders`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/shopping` | `/shopping`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/tasks` | `/tasks`; params?: Router.UnknownInputParams; } | { pathname: `${'/(sheets)'}/createTask` | `/createTask`; params?: Router.UnknownInputParams; } | { pathname: `${'/(sheets)'}/profile` | `/profile`; params?: Router.UnknownInputParams; } | { pathname: `/+not-found`, params: Router.UnknownInputParams & {  } };
-      hrefOutputParams: { pathname: Router.RelativePathString, params?: Router.UnknownOutputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownOutputParams } | { pathname: `/_sitemap`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs)'}` | `/`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs)'}/notes` | `/notes`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs)'}/reminders` | `/reminders`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs)'}/shopping` | `/shopping`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(tabs)'}/tasks` | `/tasks`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(sheets)'}/createTask` | `/createTask`; params?: Router.UnknownOutputParams; } | { pathname: `${'/(sheets)'}/profile` | `/profile`; params?: Router.UnknownOutputParams; } | { pathname: `/+not-found`, params: Router.UnknownOutputParams & {  } };
-      href: Router.RelativePathString | Router.ExternalPathString | `/_sitemap${`?${string}` | `#${string}` | ''}` | `${'/(tabs)'}${`?${string}` | `#${string}` | ''}` | `/${`?${string}` | `#${string}` | ''}` | `${'/(tabs)'}/notes${`?${string}` | `#${string}` | ''}` | `/notes${`?${string}` | `#${string}` | ''}` | `${'/(tabs)'}/reminders${`?${string}` | `#${string}` | ''}` | `/reminders${`?${string}` | `#${string}` | ''}` | `${'/(tabs)'}/shopping${`?${string}` | `#${string}` | ''}` | `/shopping${`?${string}` | `#${string}` | ''}` | `${'/(tabs)'}/tasks${`?${string}` | `#${string}` | ''}` | `/tasks${`?${string}` | `#${string}` | ''}` | `${'/(sheets)'}/createTask${`?${string}` | `#${string}` | ''}` | `/createTask${`?${string}` | `#${string}` | ''}` | `${'/(sheets)'}/profile${`?${string}` | `#${string}` | ''}` | `/profile${`?${string}` | `#${string}` | ''}` | { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}` | `/`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/notes` | `/notes`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/reminders` | `/reminders`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/shopping` | `/shopping`; params?: Router.UnknownInputParams; } | { pathname: `${'/(tabs)'}/tasks` | `/tasks`; params?: Router.UnknownInputParams; } | { pathname: `${'/(sheets)'}/createTask` | `/createTask`; params?: Router.UnknownInputParams; } | { pathname: `${'/(sheets)'}/profile` | `/profile`; params?: Router.UnknownInputParams; } | `/+not-found` | { pathname: `/+not-found`, params: Router.UnknownInputParams & {  } };
-    }
-  }
+declare module "expo-router" {
+	export namespace ExpoRouter {
+		export interface __routes<T extends string | object = string> {
+			hrefInputParams:
+				| {
+						pathname: Router.RelativePathString;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: Router.ExternalPathString;
+						params?: Router.UnknownInputParams;
+				  }
+				| { pathname: `/_sitemap`; params?: Router.UnknownInputParams }
+				| {
+						pathname: `${"/(sheets)"}/createTask` | `/createTask`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(sheets)"}/profile` | `/profile`;
+						params?: Router.UnknownInputParams;
+				  }
+				| { pathname: `${"/(tabs)"}` | `/`; params?: Router.UnknownInputParams }
+				| {
+						pathname: `${"/(tabs)"}/notes` | `/notes`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/reminders` | `/reminders`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/shopping` | `/shopping`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/tasks` | `/tasks`;
+						params?: Router.UnknownInputParams;
+				  }
+				| { pathname: `/+not-found`; params: Router.UnknownInputParams & {} };
+			hrefOutputParams:
+				| {
+						pathname: Router.RelativePathString;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: Router.ExternalPathString;
+						params?: Router.UnknownOutputParams;
+				  }
+				| { pathname: `/_sitemap`; params?: Router.UnknownOutputParams }
+				| {
+						pathname: `${"/(sheets)"}/createTask` | `/createTask`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: `${"/(sheets)"}/profile` | `/profile`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}` | `/`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/notes` | `/notes`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/reminders` | `/reminders`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/shopping` | `/shopping`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/tasks` | `/tasks`;
+						params?: Router.UnknownOutputParams;
+				  }
+				| { pathname: `/+not-found`; params: Router.UnknownOutputParams & {} };
+			href:
+				| Router.RelativePathString
+				| Router.ExternalPathString
+				| `/_sitemap${`?${string}` | `#${string}` | ""}`
+				| `${"/(sheets)"}/createTask${`?${string}` | `#${string}` | ""}`
+				| `/createTask${`?${string}` | `#${string}` | ""}`
+				| `${"/(sheets)"}/profile${`?${string}` | `#${string}` | ""}`
+				| `/profile${`?${string}` | `#${string}` | ""}`
+				| `${"/(tabs)"}${`?${string}` | `#${string}` | ""}`
+				| `/${`?${string}` | `#${string}` | ""}`
+				| `${"/(tabs)"}/notes${`?${string}` | `#${string}` | ""}`
+				| `/notes${`?${string}` | `#${string}` | ""}`
+				| `${"/(tabs)"}/reminders${`?${string}` | `#${string}` | ""}`
+				| `/reminders${`?${string}` | `#${string}` | ""}`
+				| `${"/(tabs)"}/shopping${`?${string}` | `#${string}` | ""}`
+				| `/shopping${`?${string}` | `#${string}` | ""}`
+				| `${"/(tabs)"}/tasks${`?${string}` | `#${string}` | ""}`
+				| `/tasks${`?${string}` | `#${string}` | ""}`
+				| {
+						pathname: Router.RelativePathString;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: Router.ExternalPathString;
+						params?: Router.UnknownInputParams;
+				  }
+				| { pathname: `/_sitemap`; params?: Router.UnknownInputParams }
+				| {
+						pathname: `${"/(sheets)"}/createTask` | `/createTask`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(sheets)"}/profile` | `/profile`;
+						params?: Router.UnknownInputParams;
+				  }
+				| { pathname: `${"/(tabs)"}` | `/`; params?: Router.UnknownInputParams }
+				| {
+						pathname: `${"/(tabs)"}/notes` | `/notes`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/reminders` | `/reminders`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/shopping` | `/shopping`;
+						params?: Router.UnknownInputParams;
+				  }
+				| {
+						pathname: `${"/(tabs)"}/tasks` | `/tasks`;
+						params?: Router.UnknownInputParams;
+				  }
+				| `/+not-found`
+				| { pathname: `/+not-found`; params: Router.UnknownInputParams & {} };
+		}
+	}
 }
