@@ -4,7 +4,6 @@ import PrimaryText from "@/components/PrimaryText";
 import { useGetTasks } from "@/database/hooks";
 import { Pressable, View } from "react-native";
 import PrimaryIcon from "@/components/PrimaryIcon";
-import { useBottomModal } from "@/context/BottomModalContext";
 import AddTaskSheet from "@/sheets/AddTaskSheet";
 import Button from "@/components/Button";
 import PrimaryContentText from "@/components/PrimaryContentText";
@@ -16,12 +15,6 @@ import { router } from "expo-router";
 const TasksOverview = () => {
 	const { tasks } = useGetTasks({});
 	const primaryColour = usePrimaryColour();
-
-	const { open, close } = useBottomModal();
-
-	const onAddComplete = () => {
-		close();
-	};
 
 	const onAddHandler = () => {
 		router.navigate("/(sheets)/createTask");
