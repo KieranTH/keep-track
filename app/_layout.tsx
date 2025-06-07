@@ -13,7 +13,7 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 import "../global.css";
-import DatabaseProvider from "@/database/DatabaseProvider";
+import DatabaseProvider, { wipeDatabase } from "@/database/DatabaseProvider";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { UserProvider } from "@/context/UserContext";
 import { KeyboardProvider } from "react-native-keyboard-controller";
@@ -59,6 +59,18 @@ export default function RootLayout() {
 								/>
 								<Stack.Screen
 									name={"(sheets)/createTask"}
+									options={{
+										presentation: "formSheet",
+										gestureDirection: "vertical",
+										animation: "slide_from_bottom",
+										sheetGrabberVisible: true,
+										sheetInitialDetentIndex: 0,
+										sheetAllowedDetents: [0.8],
+										headerShown: false,
+									}}
+								/>
+								<Stack.Screen
+									name={"(sheets)/createReminder"}
 									options={{
 										presentation: "formSheet",
 										gestureDirection: "vertical",

@@ -1,7 +1,5 @@
 import { useSQLiteContext } from "expo-sqlite";
-import { useEffect, useState } from "react";
-import type { Task, User } from "./type";
-import { randomUUID } from "expo-crypto";
+import type { User } from "./type";
 
 export const useUserDB = () => {
 	const db = useSQLiteContext();
@@ -34,51 +32,5 @@ export const useUserDB = () => {
 		addUser,
 		fetchUser,
 		updateUser,
-	};
-};
-
-type GetTasksProps = {
-	limit?: number;
-};
-export const useGetTasks = ({ limit }: GetTasksProps) => {
-	const db = useSQLiteContext();
-
-	const [tasks, setTasks] = useState<Task[]>([]);
-
-	useEffect(() => {
-		async function init() {
-			if (limit) {
-				const result = await db.getAllAsync<Task>(
-					"SELECT * FROM tasks LIMIT ?",
-					limit,
-				);
-				setTasks(result);
-			} else {
-				const result = await db.getAllAsync<Task>("SELECT * FROM tasks");
-				setTasks(result);
-			}
-		}
-		init();
-	}, []);
-
-	return {
-		tasks,
-	};
-};
-
-export const useTasks = () => {
-	const db = useSQLiteContext();
-
-	const addTask = async (task: Omit<Task, "id">) => {
-		await db.runAsync(
-			"INSERT INTO tasks (id, title, description) VALUES (?, ?, ?)",
-			randomUUID(),
-			task.title,
-			task.description ?? null,
-		);
-	};
-
-	return {
-		addTask,
 	};
 };

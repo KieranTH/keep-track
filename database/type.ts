@@ -10,3 +10,13 @@ export type Task = {
 	description?: string;
 	completed?: number;
 };
+
+export type Reminder = {
+	id: number;
+	title: string;
+	description?: string;
+	completed?: number;
+	createdAt: string; // ISO date string
+	reminderDate?: string; // ISO date string
+	reminderInterval?: number; // in seconds
+};

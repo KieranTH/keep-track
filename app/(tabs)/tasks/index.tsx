@@ -1,13 +1,12 @@
 import Content from "@/components/Content";
 import { ThemedText } from "@/components/ThemedText";
-import TasksOverview from "@/pages/home/TasksOverview";
-import { Text, View } from "react-native";
+import { Tasks } from "@/pages/tasks/Tasks";
 
 const TasksScreen = () => {
 	return (
 		<Content applySafeMargin={false}>
 			<ThemedText type="title">Tasks</ThemedText>
-			<TasksOverview />
+			<Tasks />
 		</Content>
 	);
 };
