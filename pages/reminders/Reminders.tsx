@@ -1,31 +1,26 @@
-import CopyText from "@/components/CopyText";
 import ForegroundView from "@/components/ForegroundView";
-import PrimaryText from "@/components/PrimaryText";
-import { Pressable, View } from "react-native";
-import PrimaryIcon from "@/components/PrimaryIcon";
-import PrimaryContentText from "@/components/PrimaryContentText";
-import clsx from "clsx";
-import { usePrimaryColour } from "@/hooks/usePrimaryColour";
 import PrimaryButton from "@/components/PrimaryButton";
+import PrimaryContentText from "@/components/PrimaryContentText";
+import PrimaryIcon from "@/components/PrimaryIcon";
+import PrimaryText from "@/components/PrimaryText";
+import { useReminders } from "@/database/reminders";
+import { usePrimaryColour } from "@/hooks/usePrimaryColour";
+import clsx from "clsx";
 import { router } from "expo-router";
-import { useTasks } from "@/database/tasks";
+import { Pressable, View } from "react-native";
 
-type TasksOverviewProps = {
-	showTitle?: boolean;
-};
-const TasksOverview = ({ showTitle = false }: TasksOverviewProps) => {
-	const { tasks } = useTasks({});
+export const Reminders = () => {
+	const { reminders } = useReminders({});
 	const primaryColour = usePrimaryColour();
 
 	const onAddHandler = () => {
-		router.navigate("/(sheets)/createTask");
+		router.navigate("/(sheets)/createReminder");
 	};
 
 	return (
 		<ForegroundView className="rounded-xl p-4 gap-2">
-			{showTitle && <CopyText type={"subtitle"}>Tasks</CopyText>}
-			{tasks.map((task) => (
-				<Pressable key={task.id}>
+			{reminders.map((reminder) => (
+				<Pressable key={reminder.id}>
 					<View
 						className={clsx(
 							"flex-row gap-2 border border-primary p-4 rounded-lg",
@@ -37,7 +32,7 @@ const TasksOverview = ({ showTitle = false }: TasksOverviewProps) => {
 						}}
 					>
 						<PrimaryContentText type={"defaultSemiBold"}>
-							{task.title}
+							{reminder.title}
 						</PrimaryContentText>
 					</View>
 				</Pressable>
@@ -53,5 +48,3 @@ const TasksOverview = ({ showTitle = false }: TasksOverviewProps) => {
 		</ForegroundView>
 	);
 };
-
-export default TasksOverview;

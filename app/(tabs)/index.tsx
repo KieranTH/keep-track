@@ -29,7 +29,7 @@ export default function HomeScreen() {
 					</Link>
 				</View>
 			</View>
-			<TasksOverview />
+			<TasksOverview showTitle />
 		</Content>
 	);
 }

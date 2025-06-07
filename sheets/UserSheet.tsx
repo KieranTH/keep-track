@@ -16,9 +16,8 @@ import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../tailwind.config.js";
 import Button from "@/components/Button";
 import { useUser } from "@/context/UserContext";
-import { useUserSetup } from "@/hooks/useStorage";
-import { STORAGE_KEYS } from "@/storage/keys";
 import { router } from "expo-router";
+import { wipeDatabase } from "@/database/DatabaseProvider";
 
 type UserSheetType = {
 	onCompleted: () => void;
@@ -95,6 +94,12 @@ const UserSheet = ({ onCompleted }: UserSheetType) => {
 					<Swatches />
 				</ColorPicker>
 			</ThemedView>
+
+			{__DEV__ && (
+				<Button onPress={wipeDatabase}>
+					<ThemedText type="subtitle">Reset DB Migrations</ThemedText>
+				</Button>
+			)}
 
 			<Button
 				className="p-4"

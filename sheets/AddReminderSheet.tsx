@@ -5,22 +5,22 @@ import { BackgroundInput } from "@/components/BackgroundInput";
 import Button from "@/components/Button";
 import BackgroundButton from "@/components/BackgroundButton";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { useTaskFunctions } from "@/database/tasks";
+import { useReminderFunctions } from "@/database/reminders";
 
 type Inputs = {
 	title: string;
 	description?: string;
 };
 
-type AddTaskSheetProps = {
+type AddReminderSheetProps = {
 	onComplete: () => void;
 };
 
-const AddTaskSheet = ({ onComplete }: AddTaskSheetProps) => {
-	const { addTask } = useTaskFunctions();
+const AddReminderSheet = ({ onComplete }: AddReminderSheetProps) => {
+	const { addReminder } = useReminderFunctions();
 	const onSave = (data: Inputs) => {
 		if (data.title) {
-			addTask(data)
+			addReminder(data)
 				.then(() => {
 					console.log("created");
 					onComplete();
@@ -39,7 +39,7 @@ const AddTaskSheet = ({ onComplete }: AddTaskSheetProps) => {
 
 	return (
 		<View style={styles.container}>
-			<ThemedText type="title">Create Task</ThemedText>
+			<ThemedText type="title">Create Reminder</ThemedText>
 			<View style={styles.content}>
 				<View className="gap-2">
 					<ThemedText type="subtitle">Title</ThemedText>
@@ -91,4 +91,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default AddTaskSheet;
+export default AddReminderSheet;

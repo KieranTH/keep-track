@@ -33,7 +33,7 @@ const Content = ({
 				contentContainerStyle={{
 					flexGrow: 1,
 					rowGap: gap,
-					paddingTop: applySafeMargin ? height : 0,
+					paddingTop: applySafeMargin ? height : undefined,
 					padding: padding,
 				}}
 				keyboardShouldPersistTaps={"handled"}

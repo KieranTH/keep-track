@@ -1,19 +1,15 @@
-import CopyText from "@/components/CopyText";
 import ForegroundView from "@/components/ForegroundView";
-import PrimaryText from "@/components/PrimaryText";
-import { Pressable, View } from "react-native";
-import PrimaryIcon from "@/components/PrimaryIcon";
-import PrimaryContentText from "@/components/PrimaryContentText";
-import clsx from "clsx";
-import { usePrimaryColour } from "@/hooks/usePrimaryColour";
 import PrimaryButton from "@/components/PrimaryButton";
-import { router } from "expo-router";
+import PrimaryContentText from "@/components/PrimaryContentText";
+import PrimaryIcon from "@/components/PrimaryIcon";
+import PrimaryText from "@/components/PrimaryText";
 import { useTasks } from "@/database/tasks";
+import { usePrimaryColour } from "@/hooks/usePrimaryColour";
+import clsx from "clsx";
+import { router } from "expo-router";
+import { Pressable, View } from "react-native";
 
-type TasksOverviewProps = {
-	showTitle?: boolean;
-};
-const TasksOverview = ({ showTitle = false }: TasksOverviewProps) => {
+export const Tasks = () => {
 	const { tasks } = useTasks({});
 	const primaryColour = usePrimaryColour();
 
@@ -23,7 +19,6 @@ const TasksOverview = ({ showTitle = false }: TasksOverviewProps) => {
 
 	return (
 		<ForegroundView className="rounded-xl p-4 gap-2">
-			{showTitle && <CopyText type={"subtitle"}>Tasks</CopyText>}
 			{tasks.map((task) => (
 				<Pressable key={task.id}>
 					<View
@@ -53,5 +48,3 @@ const TasksOverview = ({ showTitle = false }: TasksOverviewProps) => {
 		</ForegroundView>
 	);
 };
-
-export default TasksOverview;
