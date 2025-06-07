@@ -4,8 +4,6 @@ import PrimaryText from "@/components/PrimaryText";
 import { useGetTasks } from "@/database/hooks";
 import { Pressable, View } from "react-native";
 import PrimaryIcon from "@/components/PrimaryIcon";
-import AddTaskSheet from "@/sheets/AddTaskSheet";
-import Button from "@/components/Button";
 import PrimaryContentText from "@/components/PrimaryContentText";
 import clsx from "clsx";
 import { usePrimaryColour } from "@/hooks/usePrimaryColour";
@@ -18,7 +16,6 @@ const TasksOverview = () => {
 
 	const onAddHandler = () => {
 		router.navigate("/(sheets)/createTask");
-		// open(<AddTaskSheet onComplete={onAddComplete} />);
 	};
 
 	return (
