@@ -43,6 +43,32 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
 			);
 		`,
 		);
+
+		await db.execAsync(
+			`
+			CREATE TABLE shoppingList (
+				id TEXT PRIMARY KEY NOT NULL,
+				title TEXT NOT NULL,
+				description TEXT,
+				completed INTEGER DEFAULT 0
+				createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+			);
+		`,
+		);
+
+		await db.execAsync(
+			`
+			CREATE TABLE shoppingItem (
+				id TEXT PRIMARY KEY NOT NULL,
+				name TEXT NOT NULL,
+				quantity INTEGER DEFAULT 1,
+				description TEXT,
+				completed INTEGER DEFAULT 0
+				createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				FOREIGN KEY (listId) REFERENCES shoppingList(id) ON DELETE CASCADE
+			);
+		`,
+		);
 		currentDbVersion = 1;
 	}
 	// if (currentDbVersion === 1) {

@@ -20,3 +20,21 @@ export type Reminder = {
 	reminderDate?: string; // ISO date string
 	reminderInterval?: number; // in seconds
 };
+
+export type ShoppingList = {
+	id: string;
+	title: string;
+	description?: string;
+	completed?: number;
+	createdAt: string; // ISO date string
+};
+
+export type ShoppingItem = {
+	id: string;
+	name: string;
+	quantity?: number;
+	description?: string;
+	completed?: number;
+	createdAt: string; // ISO date string
+	listId: string; // Foreign key to ShoppingList
+};
