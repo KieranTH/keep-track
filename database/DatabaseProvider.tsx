@@ -19,10 +19,10 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
 	if (currentDbVersion === 0) {
 		await db.execAsync(`
 			PRAGMA journal_mode = 'wal';
-			CREATE TABLE users (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, colour TEXT DEFAULT NULL);
+			CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, colour TEXT DEFAULT NULL);
 		`);
 		await db.execAsync(`
-			CREATE TABLE tasks (
+			CREATE TABLE IF NOT EXISTS tasks (
 				id TEXT PRIMARY KEY NOT NULL,
 				title TEXT NOT NULL,
 				description TEXT,
@@ -32,7 +32,7 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
 
 		await db.execAsync(
 			`
-			CREATE TABLE reminders (
+			CREATE TABLE IF NOT EXISTS reminders (
 				id TEXT PRIMARY KEY NOT NULL,
 				title TEXT NOT NULL,
 				description TEXT,
@@ -46,11 +46,11 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
 
 		await db.execAsync(
 			`
-			CREATE TABLE shoppingList (
+			CREATE TABLE IF NOT EXISTS shoppingList (
 				id TEXT PRIMARY KEY NOT NULL,
 				title TEXT NOT NULL,
 				description TEXT,
-				completed INTEGER DEFAULT 0
+				completed INTEGER DEFAULT 0,
 				createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 			);
 		`,
@@ -58,13 +58,14 @@ async function migrateDbIfNeeded(db: SQLiteDatabase) {
 
 		await db.execAsync(
 			`
-			CREATE TABLE shoppingItem (
+			CREATE TABLE IF NOT EXISTS shoppingItem (
 				id TEXT PRIMARY KEY NOT NULL,
 				name TEXT NOT NULL,
 				quantity INTEGER DEFAULT 1,
 				description TEXT,
-				completed INTEGER DEFAULT 0
+				completed INTEGER DEFAULT 0,
 				createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				listId TEXT NOT NULL,
 				FOREIGN KEY (listId) REFERENCES shoppingList(id) ON DELETE CASCADE
 			);
 		`,
